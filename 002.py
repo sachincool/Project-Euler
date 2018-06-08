@@ -10,10 +10,16 @@ previous two terms. By starting with 1 and 2, the first 10 terms will be:
 Find the sum of all the even-valued terms in the sequence which do not
 exceed four million.
 """
-ans=0
-x,y=1,1
-while x<4*10**6:
-    if x%2==0:
-        ans+=x
-    x,y=y,x+y
-print(ans)
+
+import math
+F_even = [] # creating the empty list of even Fibonacci numbers
+endof = 4*10**6 # the upperbound value of some nth Fibonacci number
+Phi = ((5 ** 0.5) + 1) / 2 # A definition of Phi, the Golden Ratio
+m = math.ceil(math.log((5**0.5)*endof, Phi)) # m is the solution for the upper bound index
+for n in range(1, m + 1): # the reason for m + 1 is that the range (1, m) would exclude m
+    result = round((5**-0.5)*(Phi**n))
+    if not result % 2: # if the result gives a remainder of 0 when divided by 2
+        F_even.append(result)
+    
+print (sum(F_even))
+
